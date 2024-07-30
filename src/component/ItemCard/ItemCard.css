@@ -1,3 +1,6 @@
+.cards__text {
+  margin-bottom: 34px;
+}
 .card {
   width: 323px;
   position: relative;
