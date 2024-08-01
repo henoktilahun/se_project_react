@@ -4,6 +4,7 @@ import Header from "../Header/Header";
 import Main from "../Main/Main";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import ItemModal from "../ItemModal/ItemModal";
+import Footer from "../Footer/Footer";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import { coordinates, APIkey } from "../../utils/constants";
 
@@ -43,6 +44,7 @@ function App() {
       <div className="page__content">
         <Header handleAddClick={handleAddClick} weatherData={weatherData} />
         <Main weatherData={weatherData} handleCardClick={handleCardClick} />
+        <Footer />
       </div>
       <ModalWithForm
         title="New garment"
@@ -71,19 +73,37 @@ function App() {
         <fieldset className="modal__radio-buttons">
           <legend className="modal__legend">Select the weather type:</legend>
           <label className="modal__label modal__label_type_radio" htmlFor="hot">
-            Hot <input type="radio" className="modal__radio-input" id="hot" />
+            Hot{" "}
+            <input
+              type="radio"
+              className="modal__radio-input"
+              id="hot"
+              name="weatherType"
+            />
           </label>
           <label
             className="modal__label modal__label_type_radio"
             htmlFor="warm"
           >
-            Warm <input type="radio" className="modal__radio-input" id="warm" />
+            Warm{" "}
+            <input
+              type="radio"
+              className="modal__radio-input"
+              id="warm"
+              name="weatherType"
+            />
           </label>
           <label
             className="modal__label modal__label_type_radio"
             htmlFor="cold"
           >
-            Cold <input type="radio" className="modal__radio-input" id="cold" />
+            Cold{" "}
+            <input
+              type="radio"
+              className="modal__radio-input"
+              id="cold"
+              name="weatherType"
+            />
           </label>
         </fieldset>
       </ModalWithForm>

@@ -1,5 +1,9 @@
 .cards__text {
   margin-bottom: 34px;
+  font-family: "Cabinet Grotesk";
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24px;
 }
 .card {
   width: 323px;
@@ -9,11 +13,24 @@
 }
 
 .card__name {
-  position: absolute;
-  top: 15px;
   margin: 0;
+  font-family: "Cabinet Grotesk";
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 20px;
+  text-align: center;
+  color: rgba(0, 0, 0, 0.6);
 }
 
 .card__image {
   width: 100%;
+  border-radius: 20px;
+}
+
+.card__name-container {
+  width: 73px;
+  height: 24px;
+  position: absolute;
+  top: 15px;
+  background-color: #ffffff;
 }
