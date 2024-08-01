@@ -89,9 +89,8 @@
   color: rgba(0, 0, 0, 0.5);
 }
 
-input[type="radio"]:checked ~ label {
-  color: rgba(0, 0, 0);
-  font-weight: bold;
+label:has(input[type="radio"]:checked) {
+  color: #000000;
 }
 
 .modal__submit {
