@@ -29,6 +29,10 @@ function Header({ handleAddClick, weatherData }) {
           <img src={avatar} alt="Terrence Tegegne" className="header__avatar" />
         </div>
       </div>
+      <button className="header__menu" type="button">
+        <span className="header__menu_type_bar"></span>
+        <span className="header__menu_type_bar"></span>
+      </button>
     </header>
   );
 }
