@@ -1,3 +1,4 @@
+import { useState } from "react";
 import "./Header.css";
 import avatar from "../../assets/avatar.png";
 import logo from "../../assets/logo.svg";
@@ -8,6 +9,12 @@ function Header({ handleAddClick, weatherData }) {
     day: "numeric",
   });
 
+  const [isMobileMenuOpened, toggleMobileMenu] = useState(false);
+
+  const handleMenuClick = () => {
+    toggleMobileMenu(!isMobileMenuOpened);
+  };
+
   return (
     <header className="header">
       <div className="header__logo-date-container">
@@ -16,7 +23,13 @@ function Header({ handleAddClick, weatherData }) {
           {currentDate}, {weatherData.city}
         </p>
       </div>
-      <div className="header__button-avatar-container">
+      <div
+        className={
+          isMobileMenuOpened
+            ? "header__button-avatar-container header__button-avatar-container-active"
+            : "header__button-avatar-container"
+        }
+      >
         <button
           onClick={handleAddClick}
           type="button"
@@ -29,9 +42,21 @@ function Header({ handleAddClick, weatherData }) {
           <img src={avatar} alt="Terrence Tegegne" className="header__avatar" />
         </div>
       </div>
-      <button className="header__menu" type="button">
-        <span className="header__menu_type_bar"></span>
-        <span className="header__menu_type_bar"></span>
+      <button onClick={handleMenuClick} className="header__menu" type="button">
+        <span
+          className={
+            isMobileMenuOpened
+              ? "header__menu_type_bar header__menu_type_bar-active"
+              : "header__menu_type_bar"
+          }
+        ></span>
+        <span
+          className={
+            isMobileMenuOpened
+              ? "header__menu_type_bar header__menu_type_bar-active"
+              : "header__menu_type_bar"
+          }
+        ></span>
       </button>
     </header>
   );
