@@ -30,5 +30,5 @@ const getWeatherType = (temperature) => {
 };
 
 const isDay = ({ sunrise, sunset }, now) => {
-  return sunrise < now && now < sunset * 1000;
+  return sunrise * 1000 < now && now < sunset * 1000;
 };

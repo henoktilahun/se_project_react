@@ -5,7 +5,7 @@ function WeatherCard({ weatherData }) {
   const filteredWeatherOptions = weatherOptions.filter((option) => {
     return (
       option.day === weatherData.isDay &&
-      option.conditon === weatherData.conditon
+      option.condition === weatherData.condition
     );
   });
 
@@ -15,7 +15,7 @@ function WeatherCard({ weatherData }) {
   } else {
     weatherOption = filteredWeatherOptions[0];
   }
-
+  
   return (
     <section className="weather-card">
       <p className="weather-card__temp">{weatherData.temp.F} &deg;</p>
