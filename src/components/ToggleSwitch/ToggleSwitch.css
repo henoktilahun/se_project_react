@@ -1,0 +1,50 @@
+.toggle {
+  display: flex;
+  position: relative;
+  align-items: center;
+}
+
+.toggle__switch {
+  border-radius: 25px;
+  border: 2px solid black;
+  height: 28px;
+  width: 56px;
+  appearance: none;
+}
+
+.toggle__switch-slider {
+  border-radius: 20px;
+  height: 28px;
+  width: 28px;
+  background-color: black;
+  color: white;
+  position: absolute;
+}
+
+.toggle__switch-slider_F {
+  left: 0;
+}
+
+.toggle__switch-slider_C {
+  right: 0;
+}
+
+.toggle__switch-temp_F {
+  position: absolute;
+  color: white;
+  left: 10px;
+}
+
+.toggle__switch-temp_C {
+  position: absolute;
+  color: white;
+  right: 10px;
+}
+
+.toggle__switch-active {
+  color: white;
+  font-family: "Cabinet Grotesk";
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 17.36px;
+}
