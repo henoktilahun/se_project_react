@@ -1,4 +1,9 @@
 import { useEffect, useState } from "react";
+import { Routes, Route } from "react-router-dom";
+import { getWeather, filterWeatherData } from "../../utils/weatherApi";
+import { coordinates, APIkey } from "../../utils/constants";
+import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
+
 import "./App.css";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
@@ -6,9 +11,7 @@ import Main from "../Main/Main";
 import ItemModal from "../ItemModal/ItemModal";
 import Footer from "../Footer/Footer";
 import AddItemModal from "../AddItemModal/AddItemModal";
-import { getWeather, filterWeatherData } from "../../utils/weatherApi";
-import { coordinates, APIkey } from "../../utils/constants";
-import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
+import Profile from "../Profile/Profile";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -41,6 +44,10 @@ function App() {
     setActiveModal("");
   };
 
+  const onAddItem = (values) => {
+    console.log(values);
+  };
+
   useEffect(() => {
     getWeather(coordinates, APIkey)
       .then((data) => {
@@ -57,7 +64,19 @@ function App() {
       >
         <div className="page__content">
           <Header handleAddClick={handleAddClick} weatherData={weatherData} />
-          <Main weatherData={weatherData} handleCardClick={handleCardClick} />
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <Main
+                  weatherData={weatherData}
+                  handleCardClick={handleCardClick}
+                />
+              }
+            />
+            <Route path="/profile" element={<Profile />} />
+          </Routes>
+          {/* <Main weatherData={weatherData} handleCardClick={handleCardClick} /> */}
           <Footer />
         </div>
         <AddItemModal
@@ -66,6 +85,7 @@ function App() {
           activeModal={activeModal}
           closeModal={closeModal}
           isOpen={activeModal === "add-garment"}
+          onAddItem={onAddItem}
         />
         <ItemModal
           activeModal={activeModal}
