@@ -71,6 +71,12 @@
 .header__menu_type_bar:last-child {
   margin: 0 8px 16px 8px;
 }
+
+.header__link {
+  text-decoration: none;
+  color: black;
+}
+
 @media screen and (max-width: 768px) {
   .header__logo-date-container {
     flex-direction: column;
