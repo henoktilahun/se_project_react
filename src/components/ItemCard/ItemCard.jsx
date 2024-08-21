@@ -1,8 +1,8 @@
 import "./ItemCard.css";
 
-function ItemCard({ item, onCardClick }) {
+function ItemCard({ item, handleCardClick }) {
   const openCardOnClick = () => {
-    onCardClick(item);
+    handleCardClick(item);
   };
 
   return (
