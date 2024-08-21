@@ -60,9 +60,11 @@ function App() {
   }, []);
 
   useEffect(() => {
-    getItems().then((data) => {
-      setClothingItems(data)
-    }).catch(console.error)
+    getItems()
+      .then((data) => {
+        setClothingItems(data);
+      })
+      .catch(console.error);
   }, []);
 
   return (
@@ -83,7 +85,15 @@ function App() {
                 />
               }
             />
-            <Route path="/profile" element={<Profile onCardClick={handleCardClick} clothingItems={clothingItems}/>} />
+            <Route
+              path="/profile"
+              element={
+                <Profile
+                  handleCardClick={handleCardClick}
+                  clothingItems={clothingItems}
+                />
+              }
+            />
           </Routes>
           {/* <Main weatherData={weatherData} handleCardClick={handleCardClick} /> */}
           <Footer />
