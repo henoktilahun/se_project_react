@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
-import { Routes, Route } from "react-router-dom";
-import { getWeather, filterWeatherData } from "../../utils/weatherApi";
-import { coordinates, APIkey } from "../../utils/constants";
+import { Routes, Route } from "react-router-dom";;
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
 
 import "./App.css";
@@ -12,7 +10,9 @@ import ItemModal from "../ItemModal/ItemModal";
 import Footer from "../Footer/Footer";
 import AddItemModal from "../AddItemModal/AddItemModal";
 import Profile from "../Profile/Profile";
-import { getItems } from "../../utils/api";
+import { getWeather, filterWeatherData } from "../../utils/weatherApi";
+import { coordinates, APIkey } from "../../utils/constants"
+import { getItems, addItems, deleteItems } from "../../utils/api";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -48,6 +48,11 @@ function App() {
 
   const onAddItem = (values) => {
     console.log(values);
+    addItems()
+      .then((data) => {
+        setClothingItems(data);
+      })
+      .catch(console.error);
   };
 
   useEffect(() => {
@@ -66,6 +71,14 @@ function App() {
       })
       .catch(console.error);
   }, []);
+
+  // useEffect(() => {
+  //   getItems()
+  //     .then((data) => {
+  //       setClothingItems(data);
+  //     })
+  //     .catch(console.error);
+  // }, []);
 
   return (
     <div className="page">

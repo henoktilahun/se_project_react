@@ -6,20 +6,22 @@ function getItems() {
     })
 }
 
-addItems({name, link}) {
+function addItems({name, imageUrl, weatherType}) {
+    console.log({name, imageUrl, weatherType})
     return fetch(`${this._baseUrl}/items/${cardID}`, {
       method: "POST",
       headers: {
-        'Content-type': 'application/json; charset=UTF-8' // Indicates the content 
+        'Content-type': 'application/json; charset=UTF-8'
        },
-       ody: JSON.stringify({
+       body: JSON.stringify({
         name,
-        link,
+        imageUrl,
+        weatherType,
       }),
     });
   }
 
-deleteItems(cardID) {
+function deleteItems(cardID) {
     return fetch(`${this._baseUrl}/items/${cardID}`, {
       method: "DELETE",
       headers: {
@@ -28,4 +30,4 @@ deleteItems(cardID) {
     });
   }
 
-export {getItems}
+export {getItems, addItems, deleteItems}
