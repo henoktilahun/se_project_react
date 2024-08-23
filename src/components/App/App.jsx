@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Routes, Route } from "react-router-dom";;
+import { Routes, Route } from "react-router-dom";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
 
 import "./App.css";
@@ -11,7 +11,7 @@ import Footer from "../Footer/Footer";
 import AddItemModal from "../AddItemModal/AddItemModal";
 import Profile from "../Profile/Profile";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
-import { coordinates, APIkey } from "../../utils/constants"
+import { coordinates, APIkey } from "../../utils/constants";
 import { getItems, addItems, deleteItems } from "../../utils/api";
 
 function App() {
@@ -48,7 +48,16 @@ function App() {
 
   const onAddItem = (values) => {
     console.log(values);
-    addItems()
+    addItems(values)
+      .then((data) => {
+        setClothingItems(data);
+      })
+      .catch(console.error);
+  };
+
+  const onDeleteItem = (values) => {
+    console.log(values);
+    deleteItem(values)
       .then((data) => {
         setClothingItems(data);
       })
