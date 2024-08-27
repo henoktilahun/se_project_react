@@ -7,7 +7,6 @@ function getItems() {
 }
 
 function addItems({ clothName, imageLink, weatherType }) {
-  console.log({ clothName, imageLink, weatherType });
   return fetch(`${baseUrl}/items`, {
     method: "POST",
     headers: {
@@ -21,11 +20,11 @@ function addItems({ clothName, imageLink, weatherType }) {
   });
 }
 
-function deleteItems(cardID) {
-  return fetch(`${this._baseUrl}/items/${cardID}`, {
+function deleteItems(itemId) {
+  return fetch(`${baseUrl}/items/${itemId}`, {
     method: "DELETE",
     headers: {
-      "Content-type": "application/json; charset=UTF-8", // Indicates the content
+      "Content-type": "application/json; charset=UTF-8",
     },
   });
 }

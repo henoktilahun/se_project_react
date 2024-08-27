@@ -42,27 +42,36 @@ function App() {
     setActiveModal("add-garment");
   };
 
+  const handleDeleteItem = () => {
+    deleteItems(selectedCard._id)
+      .then((data) => {
+        setClothingItems([data, ...clothingItems]);
+        closeModal();
+      })
+      .catch(console.error);
+  };
+
   const closeModal = () => {
     setActiveModal("");
   };
 
   const onAddItem = (values) => {
-    console.log(values);
     addItems(values)
       .then((data) => {
-        setClothingItems(data);
+        setClothingItems([data, ...clothingItems]);
+        closeModal();
       })
       .catch(console.error);
   };
 
-  const onDeleteItem = (values) => {
-    console.log(values);
-    deleteItem(values)
-      .then((data) => {
-        setClothingItems(data);
-      })
-      .catch(console.error);
-  };
+  // const onDeleteItem = (values) => {
+  //   console.log(values);
+  //   deleteItem(values)
+  //     .then((data) => {
+  //       setClothingItems(data);
+  //     })
+  //     .catch(console.error);
+  // };
 
   useEffect(() => {
     getWeather(coordinates, APIkey)
@@ -113,6 +122,8 @@ function App() {
                 <Profile
                   handleCardClick={handleCardClick}
                   clothingItems={clothingItems}
+                  handleAddClick={handleAddClick}
+                  selectedCard={selectedCard}
                 />
               }
             />
@@ -133,6 +144,7 @@ function App() {
           card={selectedCard}
           closeModal={closeModal}
           isOpen={activeModal === "preview"}
+          handleDeleteItem={handleDeleteItem}
         />
       </CurrentTemperatureUnitContext.Provider>
     </div>

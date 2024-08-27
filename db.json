@@ -103,16 +103,10 @@
       "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/T-Shirt.png?etag=44ed1963c44ab19cd2f5011522c5fc09"
     },
     {
-      "clothName": "cloth",
+      "clothName": "Test",
       "imageLink": "http://www.google.com",
       "weatherType": "on",
       "_id": 17
-    },
-    {
-      "clothName": "Bomer Jacket",
-      "imageLink": "https://img.freepik.com/free-photo/still-life-rendering-jackets-display_23-2149745042.jpg?t=st=1724377354~exp=1724380954~hmac=ddb82d338faf6167e422e8411463d432798fd7c2407114ebedd0948720e68725&w=1480",
-      "weatherType": "on",
-      "_id": 18
     }
   ]
 }
