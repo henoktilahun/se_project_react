@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import "./AddItemModal.css";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
 function AddItemModal({ closeModal, activeModal, isOpen, onAddItem }) {
@@ -8,18 +7,15 @@ function AddItemModal({ closeModal, activeModal, isOpen, onAddItem }) {
   const [weather, setWeatherType] = useState("");
 
   const handleClothNameChange = (evt) => {
-    console.log(evt.target.value);
     setClothName(evt.target.value);
   };
 
   const handleImageLinkChange = (evt) => {
-    console.log(evt.target.value);
     setImageLink(evt.target.value);
   };
 
   const handleWeatherTypeChange = (evt) => {
-    console.log(evt.target.value);
-    setWeatherType(evt.target.value);
+    setWeatherType(evt.target.id);
   };
 
   const handleSubmit = (evt) => {

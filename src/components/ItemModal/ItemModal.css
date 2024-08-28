@@ -10,6 +10,7 @@
   padding: 0;
 }
 
+
 .modal__image-caption {
   margin: 0;
   padding: 20px 0 12px 32px;
@@ -30,12 +31,9 @@
 
 .modal__close_type_image {
   background: transparent url(/src/assets/close_image.svg) no-repeat center;
-  position: absolute;
-  top: 26px;
-  right: 26px;
-  width: 16px;
-  height: 16px;
-  border: none;
+  top: 24px;
+  right: 24px;
+  padding: 0;
 }
 
 .modal__footer-container {

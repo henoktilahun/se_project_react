@@ -1,11 +1,9 @@
 import { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
-
 import "./App.css";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
-//import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import ItemModal from "../ItemModal/ItemModal";
 import Footer from "../Footer/Footer";
 import AddItemModal from "../AddItemModal/AddItemModal";
@@ -58,7 +56,7 @@ function App() {
   };
 
   const onAddItem = (evt, values) => {
-    evt.preventDefault();
+    // evt.preventDefault();
     addItems(values)
       .then((data) => {
         setClothingItems([data, ...clothingItems]);
@@ -66,15 +64,6 @@ function App() {
       })
       .catch(console.error);
   };
-
-  // const onDeleteItem = (values) => {
-  //   console.log(values);
-  //   deleteItem(values)
-  //     .then((data) => {
-  //       setClothingItems(data);
-  //     })
-  //     .catch(console.error);
-  // };
 
   useEffect(() => {
     getWeather(coordinates, APIkey)
@@ -93,13 +82,6 @@ function App() {
       .catch(console.error);
   }, []);
 
-  // useEffect(() => {
-  //   getItems()
-  //     .then((data) => {
-  //       setClothingItems(data);
-  //     })
-  //     .catch(console.error);
-  // }, []);
 
   return (
     <div className="page">

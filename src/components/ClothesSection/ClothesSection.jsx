@@ -1,6 +1,5 @@
 import "./ClothesSection.css";
 import ItemCard from "../ItemCard/ItemCard";
-// import { defaultClothingItems } from "../../utils/constants";
 
 function ClothesSection({
   handleCardClick,
@@ -8,7 +7,6 @@ function ClothesSection({
   handleAddClick,
   selectedCard,
 }) {
-  //   console.log(clothingItems);
   return (
     <div className="clothes__section">
       <div className="clothes__section-header">
@@ -23,7 +21,6 @@ function ClothesSection({
       </div>
       <ul className="clothes__section-items">
         {clothingItems.map((item) => {
-          //console.log(item._id);
           return (
             <ItemCard
               key={item._id ? item._id : Math.random()}

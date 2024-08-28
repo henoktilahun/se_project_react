@@ -17,7 +17,9 @@ function addItems({ name, imageUrl, weather }) {
       imageUrl,
       weather,
     }),
-  });
+  }).then((res) => {
+    return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
+  })
 }
 
 function deleteItems(itemId) {
@@ -26,7 +28,27 @@ function deleteItems(itemId) {
     headers: {
       "Content-type": "application/json; charset=UTF-8",
     },
-  });
+  }).then((res) => {
+    return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
+  })
 }
 
 export { getItems, addItems, deleteItems };
+
+
+
+function createCard({ name, imageUrl, weather }) {
+  return fetch(`${baseUrl}/items`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      name,
+      imageUrl,
+      weather,
+    }),
+  }).then((res) => {
+    return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
+  })
+}
