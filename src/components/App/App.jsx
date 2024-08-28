@@ -44,8 +44,8 @@ function App() {
 
   const handleDeleteItem = () => {
     deleteItems(selectedCard._id)
-      .then((data) => {
-        setClothingItems([data, ...clothingItems]);
+      .then(() => {
+        setClothingItems((prevItems) => prevItems.filter((item) => item._id !== selectedCard._id));
         closeModal();
       })
       .catch(console.error);

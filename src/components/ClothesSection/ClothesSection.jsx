@@ -8,7 +8,7 @@ function ClothesSection({
   handleAddClick,
   selectedCard,
 }) {
-  console.log(clothingItems);
+  //console.log(clothingItems);
   return (
     <div className="clothes__section">
       <div className="clothes__section-header">
@@ -23,13 +23,10 @@ function ClothesSection({
       </div>
       <ul className="clothes__section-items">
         {clothingItems
-          .filter((item) => {
-            return item._id !== selectedCard._id;
-          })
           .map((item) => {
             return (
               <ItemCard
-                key={item._id}
+                key={item?._id || item?.id}
                 item={item}
                 handleCardClick={handleCardClick}
               />
