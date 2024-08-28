@@ -6,16 +6,16 @@ function getItems() {
   });
 }
 
-function addItems({ clothName, imageLink, weatherType }) {
+function addItems({ name, imageUrl, weather }) {
   return fetch(`${baseUrl}/items`, {
     method: "POST",
     headers: {
       "Content-type": "application/json; charset=UTF-8",
     },
     body: JSON.stringify({
-      clothName,
-      imageLink,
-      weatherType,
+      name,
+      imageUrl,
+      weather,
     }),
   });
 }

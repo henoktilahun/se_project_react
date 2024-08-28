@@ -45,7 +45,9 @@ function App() {
   const handleDeleteItem = () => {
     deleteItems(selectedCard._id)
       .then(() => {
-        setClothingItems((prevItems) => prevItems.filter((item) => item._id !== selectedCard._id));
+        setClothingItems((prevItems) =>
+          prevItems.filter((item) => item._id !== selectedCard._id)
+        );
         closeModal();
       })
       .catch(console.error);
@@ -55,7 +57,8 @@ function App() {
     setActiveModal("");
   };
 
-  const onAddItem = (values) => {
+  const onAddItem = (evt, values) => {
+    evt.preventDefault();
     addItems(values)
       .then((data) => {
         setClothingItems([data, ...clothingItems]);

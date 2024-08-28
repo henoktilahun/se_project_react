@@ -3,9 +3,9 @@ import "./AddItemModal.css";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
 function AddItemModal({ closeModal, activeModal, isOpen, onAddItem }) {
-  const [clothName, setClothName] = useState("");
-  const [imageLink, setImageLink] = useState("");
-  const [weatherType, setWeatherType] = useState("");
+  const [name, setClothName] = useState("");
+  const [imageUrl, setImageLink] = useState("");
+  const [weather, setWeatherType] = useState("");
 
   const handleClothNameChange = (evt) => {
     console.log(evt.target.value);
@@ -24,7 +24,7 @@ function AddItemModal({ closeModal, activeModal, isOpen, onAddItem }) {
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    onAddItem({ clothName, imageLink, weatherType });
+    onAddItem(evt, { name, imageUrl, weather });
   };
 
   return (

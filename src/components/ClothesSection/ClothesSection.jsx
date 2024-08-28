@@ -8,7 +8,7 @@ function ClothesSection({
   handleAddClick,
   selectedCard,
 }) {
-  //console.log(clothingItems);
+  //   console.log(clothingItems);
   return (
     <div className="clothes__section">
       <div className="clothes__section-header">
@@ -22,16 +22,16 @@ function ClothesSection({
         </button>
       </div>
       <ul className="clothes__section-items">
-        {clothingItems
-          .map((item) => {
-            return (
-              <ItemCard
-                key={item?._id || item?.id}
-                item={item}
-                handleCardClick={handleCardClick}
-              />
-            );
-          })}
+        {clothingItems.map((item) => {
+          //console.log(item._id);
+          return (
+            <ItemCard
+              key={item._id ? item._id : Math.random()}
+              item={item}
+              handleCardClick={handleCardClick}
+            />
+          );
+        })}
       </ul>
     </div>
   );
