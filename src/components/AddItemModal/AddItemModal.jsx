@@ -15,13 +15,19 @@ function AddItemModal({ closeModal, activeModal, isOpen, onAddItem }) {
   };
 
   const handleWeatherTypeChange = (evt) => {
-    setWeatherType(evt.target.id);
+    setWeatherType(evt.target.value);
   };
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    onAddItem(evt, { name, imageUrl, weather });
+    onAddItem(evt, { name, imageUrl, weather}, resetForm);
   };
+
+  const resetForm = () => {
+    setClothName("");
+    setImageLink("");
+    setWeatherType("");
+  }
 
   return (
     <ModalWithForm
@@ -40,6 +46,7 @@ function AddItemModal({ closeModal, activeModal, isOpen, onAddItem }) {
           id="name"
           placeholder="Name"
           onChange={handleClothNameChange}
+          value={name}
         />
       </label>
       <label className="modal__label" htmlFor="imageUrl">
@@ -50,6 +57,7 @@ function AddItemModal({ closeModal, activeModal, isOpen, onAddItem }) {
           id="imageUrl"
           placeholder="Image URL"
           onChange={handleImageLinkChange}
+          value={imageUrl}
         />
       </label>
       <fieldset className="modal__radio-buttons">
@@ -62,6 +70,7 @@ function AddItemModal({ closeModal, activeModal, isOpen, onAddItem }) {
             id="hot"
             name="weatherType"
             onChange={handleWeatherTypeChange}
+            value="Hot"
           />
         </label>
         <label className="modal__label modal__label_type_radio" htmlFor="warm">
@@ -72,6 +81,7 @@ function AddItemModal({ closeModal, activeModal, isOpen, onAddItem }) {
             id="warm"
             name="weatherType"
             onChange={handleWeatherTypeChange}
+            value="Warm"
           />
         </label>
         <label className="modal__label modal__label_type_radio" htmlFor="cold">
@@ -82,6 +92,7 @@ function AddItemModal({ closeModal, activeModal, isOpen, onAddItem }) {
             id="cold"
             name="weatherType"
             onChange={handleWeatherTypeChange}
+            value="Cold"
           />
         </label>
       </fieldset>

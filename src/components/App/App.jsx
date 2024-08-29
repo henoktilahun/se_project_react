@@ -55,12 +55,13 @@ function App() {
     setActiveModal("");
   };
 
-  const onAddItem = (evt, values) => {
-    // evt.preventDefault();
+  const onAddItem = (evt, values, resetForm) => {
+    evt.preventDefault();
     addItems(values)
       .then((data) => {
         setClothingItems([data, ...clothingItems]);
         closeModal();
+        resetForm();
       })
       .catch(console.error);
   };
