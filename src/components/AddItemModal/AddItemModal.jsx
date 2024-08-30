@@ -20,14 +20,14 @@ function AddItemModal({ closeModal, activeModal, isOpen, onAddItem }) {
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    onAddItem(evt, { name, imageUrl, weather}, resetForm);
+    onAddItem(evt, { name, imageUrl, weather }, resetForm);
   };
 
   const resetForm = () => {
     setClothName("");
     setImageLink("");
     setWeatherType("");
-  }
+  };
 
   return (
     <ModalWithForm
@@ -70,7 +70,7 @@ function AddItemModal({ closeModal, activeModal, isOpen, onAddItem }) {
             id="hot"
             name="weatherType"
             onChange={handleWeatherTypeChange}
-            value="Hot"
+            value="hot"
           />
         </label>
         <label className="modal__label modal__label_type_radio" htmlFor="warm">
@@ -81,7 +81,7 @@ function AddItemModal({ closeModal, activeModal, isOpen, onAddItem }) {
             id="warm"
             name="weatherType"
             onChange={handleWeatherTypeChange}
-            value="Warm"
+            value="warm"
           />
         </label>
         <label className="modal__label modal__label_type_radio" htmlFor="cold">
@@ -92,7 +92,7 @@ function AddItemModal({ closeModal, activeModal, isOpen, onAddItem }) {
             id="cold"
             name="weatherType"
             onChange={handleWeatherTypeChange}
-            value="Cold"
+            value="cold"
           />
         </label>
       </fieldset>

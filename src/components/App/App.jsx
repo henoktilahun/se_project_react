@@ -83,7 +83,6 @@ function App() {
       .catch(console.error);
   }, []);
 
-
   return (
     <div className="page">
       <CurrentTemperatureUnitContext.Provider

@@ -1,6 +1,6 @@
 const baseUrl = "http://localhost:3001";
 
-function checkResponse(res) {
+export function checkResponse(res) {
   return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
 }
 
@@ -19,7 +19,7 @@ function addItems({ name, imageUrl, weather }) {
       imageUrl,
       weather,
     }),
-  }).then(checkResponse)
+  }).then(checkResponse);
 }
 
 function deleteItems(itemId) {
@@ -28,7 +28,7 @@ function deleteItems(itemId) {
     headers: {
       "Content-type": "application/json; charset=UTF-8",
     },
-  }).then(checkResponse)
+  }).then(checkResponse);
 }
 
 export { getItems, addItems, deleteItems };
