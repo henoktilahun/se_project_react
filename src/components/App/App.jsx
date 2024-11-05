@@ -7,6 +7,8 @@ import Main from "../Main/Main";
 import ItemModal from "../ItemModal/ItemModal";
 import Footer from "../Footer/Footer";
 import AddItemModal from "../AddItemModal/AddItemModal";
+import LoginModal from "../LoginModal/LoginModal";
+import RegisterModal from "../RegisterModal/RegisterModal";
 import Profile from "../Profile/Profile";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import { coordinates, APIkey } from "../../utils/constants";
@@ -117,6 +119,22 @@ function App() {
           <Footer />
         </div>
         <AddItemModal
+          title="New garment"
+          buttonText="Add garment"
+          activeModal={activeModal}
+          closeModal={closeModal}
+          isOpen={activeModal === "add-garment"}
+          onAddItem={onAddItem}
+        />
+        <LoginModal
+          title="New garment"
+          buttonText="Add garment"
+          activeModal={activeModal}
+          closeModal={closeModal}
+          isOpen={activeModal === "add-garment"}
+          onAddItem={onAddItem}
+        />
+        <RegisterModal
           title="New garment"
           buttonText="Add garment"
           activeModal={activeModal}
