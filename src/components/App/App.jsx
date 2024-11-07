@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
 import "./App.css";
 import Header from "../Header/Header";
@@ -24,6 +24,47 @@ function App() {
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
   const [clothingItems, setClothingItems] = useState([]);
+  const [isLoggedIn, SetIsLoggedIn] = useState(false);
+
+  //const navigate = useNavigate();
+
+  //HANDLE LOGIN
+  // const handleLogin = ({ username, password }) => {
+  //   if (!username || !password) {
+  //     return;
+  //   }
+  //   auth
+  //     .authorize(username, password)
+  //     .then((data) => {
+  //       if (data.jwt) {
+  //         setToken(data.jwt);
+  //         setUserData(data.user);
+  //         setIsLoggedIn(true);
+  //         const redirectPath = location.state?.from?.pathname || "/ducks";
+  //         navigate(redirectPath);
+  //       }
+  //     })
+  //     .catch(console.error);
+  // };
+
+  //HANDLE REGESTRATION
+
+  //HANDLE TOKEN STUFF
+  // useEffect(() => {
+  //   const jwt = getToken();
+
+  //   if (!jwt) {
+  //     return;
+  //   }
+
+  //   api
+  //     .getUserInfo(jwt)
+  //     .then(({ username, email }) => {
+  //       setIsLoggedIn(true);
+  //       setUserData({ username, email });
+  //     })
+  //     .catch(console.error);
+  // }, []);
 
   const handleToggleSwitchChange = () => {
     if (currentTemperatureUnit === "F") {

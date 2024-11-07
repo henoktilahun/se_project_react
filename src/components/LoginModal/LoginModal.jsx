@@ -31,8 +31,8 @@ function LoginModal({ closeModal, activeModal, isOpen, onAddItem }) {
 
   return (
     <ModalWithForm
-      title="New garment"
-      buttonText="Add garment"
+      title="Log In"
+      buttonText="Log In"
       activeModal={activeModal}
       closeModal={closeModal}
       isOpen={activeModal === "add-garment"}
