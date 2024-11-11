@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Route, useNavigate, Navigate } from "react-router-dom";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
 import "./App.css";
 import Header from "../Header/Header";
@@ -12,9 +12,10 @@ import RegisterModal from "../RegisterModal/RegisterModal";
 import Profile from "../Profile/Profile";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import { coordinates, APIkey } from "../../utils/constants";
-import { getItems, addItems, deleteItems } from "../../utils/api";
+import { getItems, addItems, deleteItems, getUserInfo } from "../../utils/api";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import * as auth from "../../utils/auth";
+import * as api from "../../utils/api";
 import { setToken, getToken } from "../../utils/token";
 
 function App() {
@@ -41,13 +42,20 @@ function App() {
           setToken(data.token);
           //setUserData(data.user);
           setIsLoggedIn(true);
-          navigate("/profile");
+          navigate("/");
           closeModal();
           // const redirectPath = location.state?.from?.pathname || "/profile";
           // navigate(redirectPath);
         }
       })
       .catch(console.error);
+  };
+
+  const handleLogOut = () => {
+    localStorage.removeItem("jwt");
+    setIsLoggedIn(false);
+    navigate("/");
+    // history.push("/login");
   };
 
   //HANDLE REGESTRATION
@@ -63,21 +71,21 @@ function App() {
   };
 
   //HANDLE TOKEN STUFF
-  // useEffect(() => {
-  //   const jwt = getToken();
+  useEffect(() => {
+    const jwt = getToken();
 
-  //   if (!jwt) {
-  //     return;
-  //   }
+    if (!jwt) {
+      return;
+    }
 
-  //   api
-  //     .getUserInfo(jwt)
-  //     .then(({ username, email }) => {
-  //       setIsLoggedIn(true);
-  //       setUserData({ username, email });
-  //     })
-  //     .catch(console.error);
-  // }, []);
+    api
+      .getUserInfo(jwt)
+      .then(({ username, email }) => {
+        setIsLoggedIn(true);
+        //setUserData({ username, email });
+      })
+      .catch(console.error);
+  }, []);
 
   const handleToggleSwitchChange = () => {
     if (currentTemperatureUnit === "F") {
@@ -180,8 +188,19 @@ function App() {
                     clothingItems={clothingItems}
                     handleAddClick={handleAddClick}
                     selectedCard={selectedCard}
+                    handleLogOut={handleLogOut}
                   />
                 </ProtectedRoute>
+              }
+            />
+            <Route
+              path="*"
+              element={
+                isLoggedIn ? (
+                  <Navigate to="/" replace />
+                ) : (
+                  <Navigate to="/" replace />
+                )
               }
             />
           </Routes>

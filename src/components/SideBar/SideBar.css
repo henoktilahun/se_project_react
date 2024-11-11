@@ -15,3 +15,19 @@
   margin: 16px 0 16px 16px;
   width: max-content;
 }
+
+/* .clothes__section-title {
+  font-family: "Cabinet Grotesk";
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24px;
+} */
+
+.sidebar_profile-button {
+  border: none;
+  background: none;
+  font-family: "Cabinet Grotesk";
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24px;
+}

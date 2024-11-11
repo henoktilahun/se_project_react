@@ -1,12 +1,30 @@
 import avatar from "../../assets/avatar.png";
 import "./SideBar.css";
 
-function SideBar() {
+function SideBar({ handleLogOut, handleChangeProfile }) {
   return (
-    <div className="sidebar">
-      <img src={avatar} alt="Default avatar" className="sidebar__avatar" />
-      <p className="sidebar__username">Terrence Tegegne</p>
-    </div>
+    <section>
+      <div className="sidebar">
+        <img src={avatar} alt="Default avatar" className="sidebar__avatar" />
+        <p className="sidebar__username">Terrence Tegegne</p>
+      </div>
+      <div className="sidebar_profile">
+        <button
+          className="sidebar_profile-button"
+          onClick={handleChangeProfile}
+          type="button"
+        >
+          Change profile data
+        </button>
+        <button
+          className="sidebar_profile-button"
+          onClick={handleLogOut}
+          type="button"
+        >
+          Log out
+        </button>
+      </div>
+    </section>
   );
 }
 
