@@ -1,32 +1,30 @@
 import React, { useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
-function LoginModal({ closeModal, activeModal, isOpen, onAddItem }) {
-  const [name, setClothName] = useState("");
-  const [imageUrl, setImageLink] = useState("");
-  const [weather, setWeatherType] = useState("");
+function LoginModal({
+  closeModal,
+  activeModal,
+  isOpen,
+  onAddItem,
+  handleLogin,
+}) {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-  const handleClothNameChange = (evt) => {
-    setClothName(evt.target.value);
-  };
-
-  const handleImageLinkChange = (evt) => {
-    setImageLink(evt.target.value);
-  };
-
-  const handleWeatherTypeChange = (evt) => {
-    setWeatherType(evt.target.value);
-  };
+  const handleEmailChange = (e) => setEmail(e.target.value);
+  const handlePasswordChange = (e) => setPassword(e.target.value);
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    onAddItem(evt, { name, imageUrl, weather }, resetForm);
+    // onAddItem(evt, { name, imageUrl, weather }, resetForm);
+    // HANDLE LOGIN logic
+    console.log("Login:", { email, password });
+    handleLogin({ email, password });
   };
 
   const resetForm = () => {
-    setClothName("");
-    setImageLink("");
-    setWeatherType("");
+    setEmail("");
+    setPassword("");
   };
 
   return (
@@ -35,67 +33,31 @@ function LoginModal({ closeModal, activeModal, isOpen, onAddItem }) {
       buttonText="Log In"
       activeModal={activeModal}
       closeModal={closeModal}
-      isOpen={activeModal === "add-garment"}
+      isOpen={activeModal === "login"}
       onSubmit={handleSubmit}
     >
-      <label className="modal__label" htmlFor="name">
-        Name{" "}
+      <label className="modal__label" htmlFor="email">
+        Email{" "}
         <input
-          type="text"
+          type="email"
           className="modal__input"
-          id="name"
-          placeholder="Name"
-          onChange={handleClothNameChange}
-          value={name}
+          id="email"
+          placeholder="Email"
+          onChange={handleEmailChange}
+          value={email}
         />
       </label>
-      <label className="modal__label" htmlFor="imageUrl">
-        Image{" "}
+      <label className="modal__label" htmlFor="password">
+        password{" "}
         <input
-          type="url"
+          type="password"
           className="modal__input"
-          id="imageUrl"
-          placeholder="Image URL"
-          onChange={handleImageLinkChange}
-          value={imageUrl}
+          id="password"
+          placeholder="Password"
+          onChange={handlePasswordChange}
+          value={password}
         />
       </label>
-      <fieldset className="modal__radio-buttons">
-        <legend className="modal__legend">Select the weather type:</legend>
-        <label className="modal__label modal__label_type_radio" htmlFor="hot">
-          Hot{" "}
-          <input
-            type="radio"
-            className="modal__radio-input"
-            id="hot"
-            name="weatherType"
-            onChange={handleWeatherTypeChange}
-            value="hot"
-          />
-        </label>
-        <label className="modal__label modal__label_type_radio" htmlFor="warm">
-          Warm{" "}
-          <input
-            type="radio"
-            className="modal__radio-input"
-            id="warm"
-            name="weatherType"
-            onChange={handleWeatherTypeChange}
-            value="warm"
-          />
-        </label>
-        <label className="modal__label modal__label_type_radio" htmlFor="cold">
-          Cold{" "}
-          <input
-            type="radio"
-            className="modal__radio-input"
-            id="cold"
-            name="weatherType"
-            onChange={handleWeatherTypeChange}
-            value="cold"
-          />
-        </label>
-      </fieldset>
     </ModalWithForm>
   );
 }

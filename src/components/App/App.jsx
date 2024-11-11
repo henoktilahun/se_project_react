@@ -13,6 +13,9 @@ import Profile from "../Profile/Profile";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import { coordinates, APIkey } from "../../utils/constants";
 import { getItems, addItems, deleteItems } from "../../utils/api";
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
+import * as auth from "../../utils/auth";
+import { setToken, getToken } from "../../utils/token";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -24,30 +27,40 @@ function App() {
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
   const [clothingItems, setClothingItems] = useState([]);
-  const [isLoggedIn, SetIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  //const navigate = useNavigate();
+  const navigate = useNavigate();
 
   //HANDLE LOGIN
-  // const handleLogin = ({ username, password }) => {
-  //   if (!username || !password) {
-  //     return;
-  //   }
-  //   auth
-  //     .authorize(username, password)
-  //     .then((data) => {
-  //       if (data.jwt) {
-  //         setToken(data.jwt);
-  //         setUserData(data.user);
-  //         setIsLoggedIn(true);
-  //         const redirectPath = location.state?.from?.pathname || "/ducks";
-  //         navigate(redirectPath);
-  //       }
-  //     })
-  //     .catch(console.error);
-  // };
+  const handleLogin = ({ email, password }) => {
+    auth
+      .signin(email, password)
+      .then((data) => {
+        console.log(data.token);
+        if (data.token) {
+          setToken(data.token);
+          //setUserData(data.user);
+          setIsLoggedIn(true);
+          navigate("/profile");
+          closeModal();
+          // const redirectPath = location.state?.from?.pathname || "/profile";
+          // navigate(redirectPath);
+        }
+      })
+      .catch(console.error);
+  };
 
   //HANDLE REGESTRATION
+  const handleRegistration = ({ name, avatar, email, password }) => {
+    auth
+      .register(name, avatar, email, password)
+      .then(() => {
+        navigate("/profile");
+        closeModal();
+        setIsLoggedIn(true);
+      })
+      .catch(console.error);
+  };
 
   //HANDLE TOKEN STUFF
   // useEffect(() => {
@@ -81,6 +94,14 @@ function App() {
 
   const handleAddClick = () => {
     setActiveModal("add-garment");
+  };
+
+  const handleRegistrationClick = () => {
+    setActiveModal("register");
+  };
+
+  const handleLoginClick = () => {
+    setActiveModal("login");
   };
 
   const handleDeleteItem = () => {
@@ -132,7 +153,13 @@ function App() {
         value={{ currentTemperatureUnit, handleToggleSwitchChange }}
       >
         <div className="page__content">
-          <Header handleAddClick={handleAddClick} weatherData={weatherData} />
+          <Header
+            handleAddClick={handleAddClick}
+            weatherData={weatherData}
+            handleLoginClick={handleLoginClick}
+            handleRegistrationClick={handleRegistrationClick}
+            isLoggedIn={isLoggedIn}
+          />
           <Routes>
             <Route
               path="/"
@@ -147,12 +174,14 @@ function App() {
             <Route
               path="/profile"
               element={
-                <Profile
-                  handleCardClick={handleCardClick}
-                  clothingItems={clothingItems}
-                  handleAddClick={handleAddClick}
-                  selectedCard={selectedCard}
-                />
+                <ProtectedRoute isLoggedIn={isLoggedIn} anonymous>
+                  <Profile
+                    handleCardClick={handleCardClick}
+                    clothingItems={clothingItems}
+                    handleAddClick={handleAddClick}
+                    selectedCard={selectedCard}
+                  />
+                </ProtectedRoute>
               }
             />
           </Routes>
@@ -168,20 +197,21 @@ function App() {
           onAddItem={onAddItem}
         />
         <LoginModal
-          title="New garment"
-          buttonText="Add garment"
+          title="Log In"
+          buttonText="Log In"
           activeModal={activeModal}
           closeModal={closeModal}
-          isOpen={activeModal === "add-garment"}
-          onAddItem={onAddItem}
+          isOpen={activeModal === "login"}
+          handleLogin={handleLogin}
+          //onAddItem={onAddItem}
         />
         <RegisterModal
-          title="New garment"
-          buttonText="Add garment"
+          title="Register"
+          buttonText="Sign Up"
           activeModal={activeModal}
           closeModal={closeModal}
-          isOpen={activeModal === "add-garment"}
-          onAddItem={onAddItem}
+          isOpen={activeModal === "register"}
+          handleRegistration={handleRegistration}
         />
         <ItemModal
           activeModal={activeModal}

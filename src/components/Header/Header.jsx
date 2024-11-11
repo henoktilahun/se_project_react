@@ -5,22 +5,30 @@ import logo from "../../assets/logo.svg";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import { Link } from "react-router-dom";
 
-function Header({ handleAddClick, weatherData }) {
+function Header({
+  handleAddClick,
+  weatherData,
+  handleLoginClick,
+  handleRegistrationClick,
+  isLoggedIn,
+}) {
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
     day: "numeric",
   });
 
   const [isMobileMenuOpened, toggleMobileMenu] = useState(false);
+  // const [loggedIn, setLoggedIn] = useState(false);
 
   const handleMenuClick = () => {
     toggleMobileMenu(!isMobileMenuOpened);
   };
 
+  console.log("isLoggedIn: " + isLoggedIn);
   return (
     <header className="header">
       <div className="header__logo-date-container">
-        <Link to="/"> 
+        <Link to="/">
           <img src={logo} alt="WTWR Logo" className="header__logo" />
         </Link>
         <p className="header__date-location">
@@ -35,19 +43,44 @@ function Header({ handleAddClick, weatherData }) {
         }
       >
         <ToggleSwitch />
-        <button
-          onClick={handleAddClick}
-          type="button"
-          className="header__button"
-        >
-          + Add Cloth
-        </button>
-        <Link to="/profile" className="header__link">
-          <div className="header__user-avatar">
-            <p className="header__username">Terrence Tegegne</p>
-            <img src={avatar} alt="Terrence Tegegne" className="header__avatar" />
-          </div>
-        </Link>
+        {isLoggedIn ? (
+          <>
+            <button
+              onClick={handleAddClick}
+              type="button"
+              className="header__button"
+            >
+              + Add Cloth
+            </button>
+            <Link to="/profile" className="header__link">
+              <div className="header__user-avatar">
+                <p className="header__username">Terrence Tegegne</p>
+                <img
+                  src={avatar}
+                  alt="Terrence Tegegne"
+                  className="header__avatar"
+                />
+              </div>
+            </Link>
+          </>
+        ) : (
+          <>
+            <button
+              onClick={handleRegistrationClick}
+              type="button"
+              className="header__button"
+            >
+              Sign Up
+            </button>
+            <button
+              onClick={handleLoginClick}
+              type="button"
+              className="header__button"
+            >
+              Log In
+            </button>
+          </>
+        )}
       </div>
       <button onClick={handleMenuClick} className="header__menu" type="button">
         <span
