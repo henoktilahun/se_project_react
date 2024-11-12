@@ -11,6 +11,7 @@ function Header({
   handleLoginClick,
   handleRegistrationClick,
   isLoggedIn,
+  currentUser,
 }) {
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
@@ -25,6 +26,7 @@ function Header({
   };
 
   console.log("isLoggedIn: " + isLoggedIn);
+  console.log(currentUser);
   return (
     <header className="header">
       <div className="header__logo-date-container">
@@ -54,10 +56,10 @@ function Header({
             </button>
             <Link to="/profile" className="header__link">
               <div className="header__user-avatar">
-                <p className="header__username">Terrence Tegegne</p>
+                <p className="header__username">{currentUser.name}</p>
                 <img
-                  src={avatar}
-                  alt="Terrence Tegegne"
+                  src={currentUser.avatar}
+                  alt={currentUser.name}
                   className="header__avatar"
                 />
               </div>

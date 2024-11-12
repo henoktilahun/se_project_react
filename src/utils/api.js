@@ -13,6 +13,7 @@ function addItems({ name, imageUrl, weather }) {
     method: "POST",
     headers: {
       "Content-type": "application/json; charset=UTF-8",
+      authorization: `Bearer ${token}`,
     },
     body: JSON.stringify({
       name,
@@ -27,6 +28,7 @@ function deleteItems(itemId) {
     method: "DELETE",
     headers: {
       "Content-type": "application/json; charset=UTF-8",
+      authorization: `Bearer ${token}`,
     },
   }).then(checkResponse);
 }
