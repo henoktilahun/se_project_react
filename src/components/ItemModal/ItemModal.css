@@ -50,3 +50,12 @@
   color: #ff4d00;
   padding: 20px 32px 68px 0;
 }
+
+.modal__footer-button_visible {
+  visibility: hidden;
+}
+
+
+.modal__footer-button_hidden {
+  visibility: visible;
+}

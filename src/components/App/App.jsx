@@ -30,7 +30,8 @@ function App() {
   const [selectedCard, setSelectedCard] = useState({});
   const [clothingItems, setClothingItems] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [currentUser, setCurrentUser] = useState({ name: "", avatar: "" });
+  //const [currentUser, setCurrentUser] = useState({ name: "", avatar: "" });
+  const [currentUser, setCurrentUser] = useState({});
 
   const navigate = useNavigate();
 
@@ -42,6 +43,7 @@ function App() {
         console.log(data.token);
         if (data.token) {
           setToken(data.token);
+          //console.log(data)
           setCurrentUser(data.user);
           setIsLoggedIn(true);
           navigate("/");
@@ -82,9 +84,10 @@ function App() {
 
     api
       .getUserInfo(jwt)
-      .then(({ name, avatar }) => {
+      .then((data) => {
         setIsLoggedIn(true);
-        setCurrentUser({ name, avatar });
+        console.log("data: " + data)
+        setCurrentUser(data.user);
       })
       .catch(console.error);
   }, []);
@@ -115,7 +118,8 @@ function App() {
   };
 
   const handleDeleteItem = () => {
-    deleteItems(selectedCard._id)
+    const jwt = getToken();
+    deleteItems(selectedCard._id, jwt)
       .then(() => {
         setClothingItems((prevItems) =>
           prevItems.filter((item) => item._id !== selectedCard._id)
@@ -130,8 +134,9 @@ function App() {
   };
 
   const onAddItem = (evt, values, resetForm) => {
+    const jwt = getToken();
     evt.preventDefault();
-    addItems(values)
+    addItems(values, jwt)
       .then((data) => {
         setClothingItems([data, ...clothingItems]);
         closeModal();
@@ -242,6 +247,8 @@ function App() {
             closeModal={closeModal}
             isOpen={activeModal === "preview"}
             handleDeleteItem={handleDeleteItem}
+            selectedCard={selectedCard}
+            currentUser={currentUser}
           />
         </CurrentTemperatureUnitContext.Provider>
       </div>

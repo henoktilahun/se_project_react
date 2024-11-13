@@ -8,7 +8,7 @@ function getItems() {
   return fetch(`${baseUrl}/items`).then(checkResponse);
 }
 
-function addItems({ name, imageUrl, weather }) {
+function addItems({ name, imageUrl, weather }, token) {
   return fetch(`${baseUrl}/items`, {
     method: "POST",
     headers: {
@@ -23,7 +23,7 @@ function addItems({ name, imageUrl, weather }) {
   }).then(checkResponse);
 }
 
-function deleteItems(itemId) {
+function deleteItems(itemId, token) {
   return fetch(`${baseUrl}/items/${itemId}`, {
     method: "DELETE",
     headers: {

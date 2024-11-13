@@ -59,7 +59,7 @@ function Header({
                 <p className="header__username">{currentUser.name}</p>
                 <img
                   src={currentUser.avatar}
-                  alt={currentUser.name}
+                  alt={currentUser.name[0]}
                   className="header__avatar"
                 />
               </div>
