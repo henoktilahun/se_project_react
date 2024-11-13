@@ -10,6 +10,7 @@ import Footer from "../Footer/Footer";
 import AddItemModal from "../AddItemModal/AddItemModal";
 import LoginModal from "../LoginModal/LoginModal";
 import RegisterModal from "../RegisterModal/RegisterModal";
+import EditProfileModal from "../EditProfileModal/EditProfileModal";
 import Profile from "../Profile/Profile";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import { coordinates, APIkey } from "../../utils/constants";
@@ -40,10 +41,8 @@ function App() {
     auth
       .signin(email, password)
       .then((data) => {
-        console.log(data.token);
         if (data.token) {
           setToken(data.token);
-          //console.log(data)
           setCurrentUser(data.user);
           setIsLoggedIn(true);
           navigate("/");
@@ -74,6 +73,18 @@ function App() {
       .catch(console.error);
   };
 
+  const handleChangeProfile = ({ name, avatar }) => {
+    const jwt = getToken();
+    api
+      .updateUserInfo({ name, avatar }, jwt)
+      .then((data) => {
+        setCurrentUser(data);
+        closeModal();
+        setIsLoggedIn(true);
+      })
+      .catch(console.error);
+  };
+
   //HANDLE TOKEN STUFF
   useEffect(() => {
     const jwt = getToken();
@@ -86,8 +97,7 @@ function App() {
       .getUserInfo(jwt)
       .then((data) => {
         setIsLoggedIn(true);
-        console.log("data: " + data)
-        setCurrentUser(data.user);
+        setCurrentUser(data);
       })
       .catch(console.error);
   }, []);
@@ -115,6 +125,10 @@ function App() {
 
   const handleLoginClick = () => {
     setActiveModal("login");
+  };
+
+  const handleChangeProfileClick = () => {
+    setActiveModal("change-profile");
   };
 
   const handleDeleteItem = () => {
@@ -198,6 +212,9 @@ function App() {
                       handleAddClick={handleAddClick}
                       selectedCard={selectedCard}
                       handleLogOut={handleLogOut}
+                      currentUser={currentUser}
+                      handleChangeProfile={handleChangeProfile}
+                      handleChangeProfileClick={handleChangeProfileClick}
                     />
                   </ProtectedRoute>
                 }
@@ -249,6 +266,14 @@ function App() {
             handleDeleteItem={handleDeleteItem}
             selectedCard={selectedCard}
             currentUser={currentUser}
+          />
+          <EditProfileModal
+            title="Change profile data"
+            buttonText="Save changes"
+            activeModal={activeModal}
+            closeModal={closeModal}
+            isOpen={activeModal === "change-profile"}
+            handleChangeProfile={handleChangeProfile}
           />
         </CurrentTemperatureUnitContext.Provider>
       </div>

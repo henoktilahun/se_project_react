@@ -8,11 +8,18 @@ function Profile({
   handleAddClick,
   selectedCard,
   handleLogOut,
+  currentUser,
+  handleChangeProfile,
+  handleChangeProfileClick,
 }) {
   return (
     <div className="profile">
       <section className="profile__sidebar">
-        <SideBar handleLogOut={handleLogOut} />
+        <SideBar
+          handleLogOut={handleLogOut}
+          handleChangeProfile={handleChangeProfile}
+          handleChangeProfileClick={handleChangeProfileClick}
+        />
       </section>
       <section className="profile__clothes-section">
         <ClothesSection
@@ -20,6 +27,7 @@ function Profile({
           clothingItems={clothingItems}
           handleAddClick={handleAddClick}
           selectedCard={selectedCard}
+          currentUser={currentUser}
         />
       </section>
     </div>

@@ -25,8 +25,6 @@ function Header({
     toggleMobileMenu(!isMobileMenuOpened);
   };
 
-  console.log("isLoggedIn: " + isLoggedIn);
-  console.log(currentUser);
   return (
     <header className="header">
       <div className="header__logo-date-container">

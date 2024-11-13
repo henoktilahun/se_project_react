@@ -47,4 +47,18 @@ const getUserInfo = (token) => {
   });
 };
 
-export { getItems, addItems, deleteItems, getUserInfo };
+const updateUserInfo = ({ name, avatar }, token) => {
+  return fetch(`${baseUrl}/users/me`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({
+      name,
+      avatar,
+    }),
+  }).then((res) => checkResponse(res));
+};
+
+export { getItems, addItems, deleteItems, getUserInfo, updateUserInfo };

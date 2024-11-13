@@ -9,7 +9,6 @@
   padding: 0;
 }
 
-
 .modal__image-caption {
   margin: 0;
   padding: 20px 0 12px 32px;
@@ -52,10 +51,9 @@
 }
 
 .modal__footer-button_visible {
-  visibility: hidden;
+  visibility: visible;
 }
 
-
 .modal__footer-button_hidden {
-  visibility: visible;
+  visibility: hidden;
 }
