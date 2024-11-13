@@ -40,8 +40,17 @@
   top: 15px;
 }
 
-.card__like{
+.card__like {
   background: transparent url(/src/assets/Like_button.svg) no-repeat center;
+  width: 18px;
+  height: 15px;
+  /* padding: 0 5px; */
+  margin: 5px 0;
+  border: none;
+}
+.card__like-selected {
+  background: transparent url(/src/assets/Like_button-selected.svg) no-repeat
+    center;
   width: 18px;
   height: 15px;
   /* padding: 0 5px; */

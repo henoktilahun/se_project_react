@@ -1,26 +1,38 @@
+import { useContext } from "react";
 import "./ItemCard.css";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
-function ItemCard({ item, handleCardClick, handleCardLike }) {
+function ItemCard({ item, handleCardClick, handleCardLike, isLoggedIn }) {
+  const currentUser = useContext(CurrentUserContext);
+  //const isLoggedIn = useContext(CurrentUserContext);
+  const isLiked = item.likes.some((_id) => _id === currentUser._id);
+  const itemLikeButtonClassName = `card__like ${
+    isLiked ? "card__like-selected" : ""
+  }`;
+
   const openCardOnClick = () => {
     handleCardClick(item);
   };
-  
+
   const handleLike = () => {
-    console.log("hand like")
-    console.log(item)
-    handleCardLike(item)
-  }
+    console.log(isLoggedIn);
+    console.log("hand like");
+    console.log(item);
+    handleCardLike({ _id: item._id, isLiked: isLiked });
+  };
 
   return (
     <li className="card">
       <div className="card__name-container">
         <div className="card__name-heading">
           <h2 className="card__name">{item.name}</h2>
-          <button
-            onClick={handleLike}
-            className="card__like"
-            type="button"
-          ></button>
+          {isLoggedIn && (
+            <button
+              onClick={handleLike}
+              className={itemLikeButtonClassName}
+              type="button"
+            ></button>
+          )}
         </div>
       </div>
       <img
