@@ -61,4 +61,16 @@ const updateUserInfo = ({ name, avatar }, token) => {
   }).then((res) => checkResponse(res));
 };
 
-export { getItems, addItems, deleteItems, getUserInfo, updateUserInfo };
+
+const addCardLike = (itemId, token) => {
+  return fetch(`${baseUrl}/items/${itemId}/likes`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  }).then((res) => checkResponse(res));
+};
+
+
+export { getItems, addItems, deleteItems, getUserInfo, updateUserInfo, addCardLike };

@@ -20,7 +20,12 @@
   font-weight: 700;
   line-height: 20px;
   text-align: center;
+  align-content: center;
   color: rgba(0, 0, 0, 0.6);
+  background-color: #ffffff;
+  width: 73px;
+  height: 24px;
+  border-radius: 4px;
 }
 
 .card__image {
@@ -29,9 +34,22 @@
 }
 
 .card__name-container {
-  width: 73px;
+  width: 101px;
   height: 24px;
   position: absolute;
   top: 15px;
-  background-color: #ffffff;
+}
+
+.card__like{
+  background: transparent url(/src/assets/Like_button.svg) no-repeat center;
+  width: 18px;
+  height: 15px;
+  /* padding: 0 5px; */
+  margin: 5px 0;
+  border: none;
+}
+
+.card__name-heading {
+  display: flex;
+  gap: 10px;
 }
