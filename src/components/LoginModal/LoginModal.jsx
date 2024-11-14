@@ -20,6 +20,7 @@ function LoginModal({
     // HANDLE LOGIN logic
     console.log("Login:", { email, password });
     handleLogin({ email, password });
+    resetForm()
   };
 
   const resetForm = () => {

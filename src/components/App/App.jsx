@@ -31,7 +31,6 @@ function App() {
   const [selectedCard, setSelectedCard] = useState({});
   const [clothingItems, setClothingItems] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  //const [currentUser, setCurrentUser] = useState({ name: "", avatar: "" });
   const [currentUser, setCurrentUser] = useState({});
 
   const navigate = useNavigate();
@@ -68,16 +67,17 @@ function App() {
   const handleLogin = ({ email, password }) => {
     auth
       .signin(email, password)
-      .then((data) => {
-        if (data.token) {
-          setToken(data.token);
-          setCurrentUser(data.user);
-          setIsLoggedIn(true);
-          navigate("/");
-          closeModal();
-          // const redirectPath = location.state?.from?.pathname || "/profile";
-          // navigate(redirectPath);
+      .then((res) => {
+        if (res.token) {
+          setToken(res.token);
+          return getUserInfo(res.token);
         }
+      })
+      .then((user) => {
+        setCurrentUser(user);
+        setIsLoggedIn(true);
+        closeModal();
+        navigate("/")
       })
       .catch(console.error);
   };
@@ -86,7 +86,6 @@ function App() {
     localStorage.removeItem("jwt");
     setIsLoggedIn(false);
     navigate("/");
-    // history.push("/login");
   };
 
   //HANDLE REGESTRATION
