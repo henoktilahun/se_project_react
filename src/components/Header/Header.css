@@ -65,7 +65,7 @@
   font-size: x-large;
   font-weight: bold;
   color: white;
-  background-color: #000000;
+  /* background-color: #000000; */
 }
 
 .header__menu_type_bar {

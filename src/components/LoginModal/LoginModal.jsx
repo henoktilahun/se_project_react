@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
-
+import "./LoginModal.css";
 function LoginModal({
   closeModal,
   activeModal,
   isOpen,
   onAddItem,
   handleLogin,
+  handleRegistrationClick,
 }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -16,11 +17,8 @@ function LoginModal({
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    // onAddItem(evt, { name, imageUrl, weather }, resetForm);
-    // HANDLE LOGIN logic
-    console.log("Login:", { email, password });
     handleLogin({ email, password });
-    resetForm()
+    resetForm();
   };
 
   const resetForm = () => {
@@ -59,6 +57,19 @@ function LoginModal({
           value={password}
         />
       </label>
+      <div className="modal__login-buttons">
+        <button className="modal__login-button" type="submit">
+          Log in
+        </button>
+        <button
+          className="modal__register-button"
+          type="button"
+          onClick={handleRegistrationClick}
+        >
+          {" "}
+          or Rgister
+        </button>
+      </div>
     </ModalWithForm>
   );
 }

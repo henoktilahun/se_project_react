@@ -77,7 +77,7 @@ function App() {
         setCurrentUser(user);
         setIsLoggedIn(true);
         closeModal();
-        navigate("/")
+        navigate("/");
       })
       .catch(console.error);
   };
@@ -93,9 +93,9 @@ function App() {
     auth
       .register(name, avatar, email, password)
       .then(() => {
-        navigate("/");
+        handleLogin({ email, password });
         closeModal();
-        setIsLoggedIn(true);
+        navigate("/");
       })
       .catch(console.error);
   };
@@ -277,6 +277,7 @@ function App() {
             closeModal={closeModal}
             isOpen={activeModal === "login"}
             handleLogin={handleLogin}
+            handleRegistrationClick={handleRegistrationClick}
             //onAddItem={onAddItem}
           />
           <RegisterModal
@@ -286,6 +287,7 @@ function App() {
             closeModal={closeModal}
             isOpen={activeModal === "register"}
             handleRegistration={handleRegistration}
+            handleLoginClick={handleLoginClick}
           />
           <ItemModal
             activeModal={activeModal}

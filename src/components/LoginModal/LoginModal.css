@@ -1,0 +1,32 @@
+.modal__login-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.modal__login-button {
+  width: 73px;
+  height: 36px;
+  border: none;
+  background-color: rgba(0, 0, 0, 0.3);
+  color: #fff;
+  border-radius: 4px;
+}
+
+.modal__login-button:hover {
+  background-color: rgba(0, 0, 0, 1);
+}
+
+.modal__register-button {
+  border: none;
+  background: none;
+  font-family: "Cabinet Grotesk";
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 20px;
+  color: rgba(0, 0, 0, 0.5);
+  padding: 0;
+}
+
+.modal__register-button:hover {
+  color: rgba(0, 0, 0, 1);
+}

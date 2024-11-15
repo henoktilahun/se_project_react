@@ -7,6 +7,7 @@ function RegisterModal({
   isOpen,
   onAddItem,
   handleRegistration,
+  handleLoginClick,
 }) {
   const [data, setData] = useState({
     name: "",
@@ -14,16 +15,6 @@ function RegisterModal({
     password: "",
     avatar: "",
   });
-
-  // const [email, setEmail] = useState("");
-  // const [password, setPassword] = useState("");
-  // const [name, setName] = useState("");
-  // const [avatar, setAvatar] = useState("");
-
-  // const handleEmailChange = (e) => setEmail(e.target.value);
-  // const handlePasswordChange = (e) => setPassword(e.target.value);
-  // const handleNameChange = (e) => setName(e.target.value);
-  // const handleAvatarChange = (e) => setAvatar(e.target.value);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -35,18 +26,10 @@ function RegisterModal({
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    // onAddItem(evt, { name, imageUrl, weather }, resetForm);
-    // HANDLE LOGIN logic
+
     handleRegistration(data);
     console.log("Registr:", { data });
   };
-
-  // const resetForm = () => {
-  //   set("");
-  //   setPassword("");
-  //   setName("");
-  //   setAvatar("");
-  // };
 
   return (
     <ModalWithForm
@@ -107,6 +90,19 @@ function RegisterModal({
           value={data.avatar}
         />
       </label>
+      <div className="modal__login-buttons">
+        <button className="modal__login-button" type="submit">
+          Next
+        </button>
+        <button
+          className="modal__register-button"
+          type="button"
+          onClick={handleLoginClick}
+        >
+          {" "}
+          or Log in
+        </button>
+      </div>
     </ModalWithForm>
   );
 }

@@ -96,6 +96,9 @@ function AddItemModal({ closeModal, activeModal, isOpen, onAddItem }) {
           />
         </label>
       </fieldset>
+      <button className="modal__submit" type="submit">
+        Add garment
+      </button>
     </ModalWithForm>
   );
 }
