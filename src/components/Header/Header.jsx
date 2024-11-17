@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import "./Header.css";
 import avatar from "../../assets/avatar.png";
 import logo from "../../assets/logo.svg";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import { Link } from "react-router-dom";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
 function Header({
   handleAddClick,
@@ -11,15 +12,14 @@ function Header({
   handleLoginClick,
   handleRegistrationClick,
   isLoggedIn,
-  currentUser,
 }) {
+  const currentUser = useContext(CurrentUserContext);
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
     day: "numeric",
   });
 
   const [isMobileMenuOpened, toggleMobileMenu] = useState(false);
-  // const [loggedIn, setLoggedIn] = useState(false);
 
   const handleMenuClick = () => {
     toggleMobileMenu(!isMobileMenuOpened);

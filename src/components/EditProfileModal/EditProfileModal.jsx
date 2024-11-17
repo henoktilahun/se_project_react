@@ -2,16 +2,12 @@ import React, { useContext, useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
-function EditProfileModal({
-  closeModal,
-  activeModal,
-  isOpen,
-  onAddItem,
-  handleChangeProfile,
-}) {
+function EditProfileModal({ closeModal, activeModal, handleChangeProfile }) {
+  const currentUser = useContext(CurrentUserContext);
+
   const [data, setData] = useState({
-    name: "",
-    avatar: "",
+    name: currentUser.name,
+    avatar: currentUser.avatar,
   });
 
   const handleChange = (e) => {
@@ -21,8 +17,6 @@ function EditProfileModal({
       [name]: value,
     }));
   };
-
-  const currentUser = useContext(CurrentUserContext);
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
@@ -38,26 +32,26 @@ function EditProfileModal({
       isOpen={activeModal === "change-profile"}
       onSubmit={handleSubmit}
     >
-      <label className="modal__label" htmlFor="name">
+      <label className="modal__label">
         Name*{" "}
         <input
           type="text"
           className="modal__input"
-          id="name"
+          id="editName"
           name="name"
-          placeholder={currentUser.name}
+          placeholder={"Your Name"}
           onChange={handleChange}
           value={data.name}
         />
       </label>
-      <label className="modal__label" htmlFor="url">
+      <label className="modal__label">
         Avatar URL{" "}
         <input
           type="url"
           className="modal__input"
-          id="url"
+          id="editUrl"
           name="avatar"
-          placeholder={currentUser.avatar}
+          placeholder={"Avatar URL"}
           onChange={handleChange}
           value={data.avatar}
         />

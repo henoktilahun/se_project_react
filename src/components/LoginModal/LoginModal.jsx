@@ -4,8 +4,6 @@ import "./LoginModal.css";
 function LoginModal({
   closeModal,
   activeModal,
-  isOpen,
-  onAddItem,
   handleLogin,
   handleRegistrationClick,
 }) {
@@ -17,8 +15,7 @@ function LoginModal({
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    handleLogin({ email, password });
-    resetForm();
+    handleLogin({ email, password }, resetForm);
   };
 
   const resetForm = () => {
@@ -35,23 +32,23 @@ function LoginModal({
       isOpen={activeModal === "login"}
       onSubmit={handleSubmit}
     >
-      <label className="modal__label" htmlFor="email">
+      <label className="modal__label">
         Email{" "}
         <input
           type="email"
           className="modal__input"
-          id="email"
+          id="loginEmail"
           placeholder="Email"
           onChange={handleEmailChange}
           value={email}
         />
       </label>
-      <label className="modal__label" htmlFor="password">
+      <label className="modal__label">
         password{" "}
         <input
           type="password"
           className="modal__input"
-          id="password"
+          id="loginPassword"
           placeholder="Password"
           onChange={handlePasswordChange}
           value={password}

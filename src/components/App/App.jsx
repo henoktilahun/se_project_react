@@ -62,7 +62,7 @@ function App() {
   };
 
   //HANDLE LOGIN
-  const handleLogin = ({ email, password }) => {
+  const handleLogin = ({ email, password }, resetForm) => {
     auth
       .signin(email, password)
       .then((res) => {
@@ -75,6 +75,7 @@ function App() {
         setCurrentUser(user);
         setIsLoggedIn(true);
         closeModal();
+        resetForm();
         navigate("/");
       })
       .catch(console.error);
@@ -87,12 +88,13 @@ function App() {
   };
 
   //HANDLE REGESTRATION
-  const handleRegistration = ({ name, avatar, email, password }) => {
+  const handleRegistration = ({ name, avatar, email, password }, resetForm) => {
     auth
       .register(name, avatar, email, password)
       .then(() => {
-        handleLogin({ email, password });
+        handleLogin({ email, password }, resetForm);
         closeModal();
+        resetForm();
         navigate("/");
       })
       .catch(console.error);
@@ -110,7 +112,7 @@ function App() {
       .catch(console.error);
   };
 
-  //HANDLE TOKEN STUFF
+  //HANDLE TOKEN
   useEffect(() => {
     const jwt = getToken();
 
@@ -214,7 +216,6 @@ function App() {
               handleLoginClick={handleLoginClick}
               handleRegistrationClick={handleRegistrationClick}
               isLoggedIn={isLoggedIn}
-              currentUser={currentUser}
             />
             <Routes>
               <Route
@@ -239,7 +240,6 @@ function App() {
                       handleAddClick={handleAddClick}
                       selectedCard={selectedCard}
                       handleLogOut={handleLogOut}
-                      currentUser={currentUser}
                       handleChangeProfile={handleChangeProfile}
                       handleChangeProfileClick={handleChangeProfileClick}
                       isLoggedIn={isLoggedIn}
@@ -277,7 +277,6 @@ function App() {
             isOpen={activeModal === "login"}
             handleLogin={handleLogin}
             handleRegistrationClick={handleRegistrationClick}
-            //onAddItem={onAddItem}
           />
           <RegisterModal
             title="Register"
@@ -295,7 +294,6 @@ function App() {
             isOpen={activeModal === "preview"}
             handleDeleteItem={handleDeleteItem}
             selectedCard={selectedCard}
-            currentUser={currentUser}
           />
           <EditProfileModal
             title="Change profile data"

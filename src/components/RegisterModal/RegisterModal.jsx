@@ -4,8 +4,6 @@ import ModalWithForm from "../ModalWithForm/ModalWithForm";
 function RegisterModal({
   closeModal,
   activeModal,
-  isOpen,
-  onAddItem,
   handleRegistration,
   handleLoginClick,
 }) {
@@ -26,7 +24,17 @@ function RegisterModal({
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    handleRegistration(data);
+    handleRegistration(data, resetForm);
+  };
+
+  const resetForm = () => {
+    setData((prevData) => ({
+      ...prevData,
+      name: "",
+      email: "",
+      password: "",
+      avatar: "",
+    }));
   };
 
   return (
@@ -38,12 +46,12 @@ function RegisterModal({
       isOpen={activeModal === "register"}
       onSubmit={handleSubmit}
     >
-      <label className="modal__label" htmlFor="email">
+      <label className="modal__label">
         Email*{" "}
         <input
           type="email"
           className="modal__input"
-          id="email"
+          id="registerEmail"
           name="email"
           placeholder="Email"
           onChange={handleChange}
@@ -51,12 +59,12 @@ function RegisterModal({
           required
         />
       </label>
-      <label className="modal__label" htmlFor="password">
+      <label className="modal__label">
         password*{" "}
         <input
           type="password"
           className="modal__input"
-          id="password"
+          id="registerPassword"
           name="password"
           placeholder="Password"
           onChange={handleChange}
@@ -64,24 +72,24 @@ function RegisterModal({
           required
         />
       </label>
-      <label className="modal__label" htmlFor="name">
+      <label className="modal__label">
         Name{" "}
         <input
           type="text"
           className="modal__input"
-          id="name"
+          id="registerName"
           name="name"
           placeholder="Name"
           onChange={handleChange}
           value={data.name}
         />
       </label>
-      <label className="modal__label" htmlFor="url">
+      <label className="modal__label">
         Avatar URL{" "}
         <input
           type="url"
           className="modal__input"
-          id="url"
+          id="registerUrl"
           name="avatar"
           placeholder="Avatar URL"
           onChange={handleChange}
