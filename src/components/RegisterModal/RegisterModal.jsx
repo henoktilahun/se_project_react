@@ -26,9 +26,7 @@ function RegisterModal({
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-
     handleRegistration(data);
-    console.log("Registr:", { data });
   };
 
   return (

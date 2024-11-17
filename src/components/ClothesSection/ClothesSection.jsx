@@ -9,19 +9,9 @@ function ClothesSection({
   currentUser,
   isLoggedIn,
 }) {
-  // Checking if the current user is the owner of the current clothing item
-  //const isOwn = selectedCard.owner === currentUser._id;
-
-  // Creating a variable which you'll then set in `className` for the delete button
-  // const itemDeleteButtonClassName = `modal__footer-button ${
-  //   isOwn ? "modal__footer-button_visible" : "modal__footer-button_hidden"
-  // }`;
-
   const isOwnClothingItems = clothingItems.filter(
     (item) => item?.owner === currentUser?._id
   );
-
-  // console.log(isOwnClothingItems);
 
   return (
     <div className="clothes__section">

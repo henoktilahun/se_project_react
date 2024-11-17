@@ -27,7 +27,6 @@ function EditProfileModal({
   const handleSubmit = (evt) => {
     evt.preventDefault();
     handleChangeProfile(data);
-    console.log("Change Profile Data:", { data });
   };
 
   return (
