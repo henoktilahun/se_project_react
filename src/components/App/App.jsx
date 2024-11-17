@@ -204,7 +204,7 @@ function App() {
   }, []);
 
   return (
-    <CurrentUserContext.Provider value={currentUser} isLoggedIn={isLoggedIn}>
+    <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
         <CurrentTemperatureUnitContext.Provider
           value={{ currentTemperatureUnit, handleToggleSwitchChange }}
@@ -244,6 +244,7 @@ function App() {
                       currentUser={currentUser}
                       handleChangeProfile={handleChangeProfile}
                       handleChangeProfileClick={handleChangeProfileClick}
+                      isLoggedIn={isLoggedIn}
                     />
                   </ProtectedRoute>
                 }

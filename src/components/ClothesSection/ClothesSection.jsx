@@ -7,6 +7,7 @@ function ClothesSection({
   handleAddClick,
   selectedCard,
   currentUser,
+  isLoggedIn,
 }) {
   // Checking if the current user is the owner of the current clothing item
   //const isOwn = selectedCard.owner === currentUser._id;
@@ -41,6 +42,7 @@ function ClothesSection({
               key={item._id ? item._id : Math.random()}
               item={item}
               handleCardClick={handleCardClick}
+              isLoggedIn={isLoggedIn}
             />
           );
         })}

@@ -11,6 +11,7 @@ function Profile({
   currentUser,
   handleChangeProfile,
   handleChangeProfileClick,
+  isLoggedIn,
 }) {
   return (
     <div className="profile">
@@ -28,6 +29,7 @@ function Profile({
           handleAddClick={handleAddClick}
           selectedCard={selectedCard}
           currentUser={currentUser}
+          isLoggedIn={isLoggedIn}
         />
       </section>
     </div>
