@@ -6,8 +6,8 @@ function EditProfileModal({ closeModal, activeModal, handleChangeProfile }) {
   const currentUser = useContext(CurrentUserContext);
 
   const [data, setData] = useState({
-    name: currentUser.name,
-    avatar: currentUser.avatar,
+    name: currentUser.name || "",
+    avatar: currentUser.avatar || "",
   });
 
   const handleChange = (e) => {
