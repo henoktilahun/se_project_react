@@ -243,6 +243,7 @@ function App() {
                       handleChangeProfile={handleChangeProfile}
                       handleChangeProfileClick={handleChangeProfileClick}
                       isLoggedIn={isLoggedIn}
+                      handleCardLike={handleCardLike}
                     />
                   </ProtectedRoute>
                 }

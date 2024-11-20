@@ -13,6 +13,7 @@ function Profile({
   handleChangeProfile,
   handleChangeProfileClick,
   isLoggedIn,
+  handleCardLike,
 }) {
   const currentUser = useContext(CurrentUserContext);
   return (
@@ -32,6 +33,7 @@ function Profile({
           selectedCard={selectedCard}
           currentUser={currentUser}
           isLoggedIn={isLoggedIn}
+          handleCardLike={handleCardLike}
         />
       </section>
     </div>

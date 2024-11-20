@@ -5,7 +5,7 @@ function ClothesSection({
   handleCardClick,
   clothingItems,
   handleAddClick,
-  selectedCard,
+  handleCardLike,
   currentUser,
   isLoggedIn,
 }) {
@@ -33,6 +33,7 @@ function ClothesSection({
               item={item}
               handleCardClick={handleCardClick}
               isLoggedIn={isLoggedIn}
+              handleCardLike={handleCardLike}
             />
           );
         })}
