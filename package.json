@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite --open",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist",
+    "deploy": "npm run build && scp -r ./dist/* henok_tilahun1996@35.196.91.127:/home/henok_tilahun1996/frontend",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
@@ -27,5 +27,5 @@
     "gh-pages": "^6.1.1",
     "vite": "^5.3.4"
   },
-  "homepage": "https://henoktilahun.github.io/se_project_react/"
+  "homepage": "https://wtwr.robot-armies.com"
 }
